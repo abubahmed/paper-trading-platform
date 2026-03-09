@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from core.database import engine, Base
 import models  # noqa: F401 — registers all models with Base
-from routers import orders
+from routers import auth, leaderboard, orders, portfolio, prices
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -20,7 +20,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(auth.router, prefix="/auth", tags=["auth"])
 app.include_router(orders.router, prefix="/orders", tags=["orders"])
+app.include_router(portfolio.router, prefix="/portfolio", tags=["portfolio"])
+app.include_router(leaderboard.router, prefix="/leaderboard", tags=["leaderboard"])
+app.include_router(prices.router, prefix="/prices", tags=["prices"])
 
 @app.get("/health")
 def health():
