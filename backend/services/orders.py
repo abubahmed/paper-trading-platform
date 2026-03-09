@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
 
+from core.queue import enqueue_order
 from models.account import Account
 from models.competition import Competition
 from models.order import Order, OrderStatus
@@ -49,6 +50,7 @@ def create_order(db: Session, user: User, data: CreateOrderRequest) -> Order:
     db.add(order)
     db.commit()
     db.refresh(order)
+    enqueue_order(str(order.id))
     return order
 
 
