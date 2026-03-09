@@ -8,6 +8,7 @@
     "seed": "uv run python -m scripts.seed_db",
     "seed:fresh": "uv run python -m scripts.seed_db --flush",
     "test-alpaca": "uv run python -m scripts.test_alpaca",
+    "ingest-prices": "uv run python -m scripts.ingest_prices",
     "redis:start": "docker start redis",
     "redis:stop": "docker stop redis",
     "redis:ping": "docker exec -it redis redis-cli ping"

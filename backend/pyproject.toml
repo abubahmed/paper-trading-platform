@@ -18,11 +18,6 @@ dependencies = [
     "uvicorn>=0.41.0",
 ]
 
-[project.scripts]
-flush = "python -m scripts.flush_db"
-seed = "python -m scripts.seed_db"
-test-alpaca = "python -m scripts.test_alpaca"
-
 [dependency-groups]
 dev = [
     "httpx>=0.28.1",
